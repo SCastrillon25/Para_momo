@@ -1,0 +1,14 @@
+{
+  "name": "regalo-momo",
+  "private": true,
+  "scripts": {
+    "install:all": "npm install --prefix Backend && npm install --prefix Frontend",
+    "dev": "concurrently \"npm run dev --prefix Backend\" \"npm run dev --prefix Frontend\""
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  },
+  "dependencies": {
+    "all": "^0.0.0"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "name": "momo-birthday-backend",
+  "version": "1.0.0",
+  "description": "API REST del regalo de cumplea\u00f1os de Momo",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "npx eslint .",
+    "dev": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SCastrillon25/web_project_around_express.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/SCastrillon25/web_project_around_express/issues"
+  },
+  "homepage": "https://github.com/SCastrillon25/web_project_around_express#readme",
+  "dependencies": {
+    "express": "^5.2.1",
+    "mongoose": "^9.8.0",
+    "nodemon": "^3.1.14",
+    "dotenv": "^16.4.7",
+    "bcryptjs": "^3.0.2",
+    "jsonwebtoken": "^9.0.2"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.1",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.32.0"
+  }
+}
