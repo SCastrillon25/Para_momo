@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./birthday.css";
 
-const BASE_URL = "https://feliz-dia-momis.abrdns.com";
+const BASE_URL = "";
 const tokenKey = "momo_token";
 const userKey = "momo_user";
 
