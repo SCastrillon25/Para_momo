@@ -1,40 +1,72 @@
 import { useEffect, useState } from "react";
 import "./birthday.css";
 
+const BASE_URL = "http://34.51.107.65:3001";
 const tokenKey = "momo_token";
 const userKey = "momo_user";
 
 async function api(path, options = {}) {
   const token = localStorage.getItem(tokenKey);
-  const response = await fetch(path, {
+
+  const response = await fetch(`${BASE_URL}${path}`, {
     ...options,
-    headers: { "Content-Type": "application/json", ...(token ? { Authorization: `Bearer ${token}` } : {}), ...(options.headers || {}) },
+    headers: {
+      "Content-Type": "application/json",
+      ...(token ? { Authorization: `Bearer ${token}` } : {}),
+      ...(options.headers || {}),
+    },
   });
+
   const data = await response.json().catch(() => ({}));
-  if (!response.ok) throw new Error(data.message || "Ha ocurrido un error.");
+
+  if (!response.ok) {
+    throw new Error(data.message || "Ha ocurrido un error.");
+  }
+
   return data;
 }
 
 function Auth({ onAuthenticated }) {
   const [mode, setMode] = useState("register");
-  const [form, setForm] = useState({ name: "", email: "", password: "" });
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
   const submit = async (event) => {
-    event.preventDefault(); setError(""); setLoading(true);
+    event.preventDefault();
+    setError("");
+    setLoading(true);
+
     try {
-      const data = await api(`/api/auth/${mode}`, { method: "POST", body: JSON.stringify(form) });
+      const data = await api(`/api/auth/${mode}`, {
+        method: "POST",
+        body: JSON.stringify(form),
+      });
+
       if (mode === "register") {
         setMode("login");
-        setForm({ name: "", email: form.email, password: "" });
-        setError("Cuenta creada correctamente. Ahora inicia sesión para abrir tu regalo. ♡");
+        setForm({
+          name: "",
+          email: form.email,
+          password: "",
+        });
+        setError(
+          "Cuenta creada correctamente. Ahora inicia sesión para abrir tu regalo. ♡"
+        );
       } else {
         localStorage.setItem(tokenKey, data.token);
         localStorage.setItem(userKey, JSON.stringify(data.user));
         onAuthenticated(data.user);
       }
-    } catch (err) { setError(err.message); } finally { setLoading(false); }
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return <div className="auth-page">
