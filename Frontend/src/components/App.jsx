@@ -159,7 +159,7 @@ function App() {
     {!opened ? <section className="cover">
       <div className="cover__glow" /><p className="eyebrow">CUENTA VERIFICADA · UN REGALO HECHO PARA TI</p>
       <h1>Feliz cumpleaños,<br /><span>{gift.recipient}</span> ♡</h1>
-      <p className="cover__intro">Hay recuerdos que merecen un lugar especial para que perduren.<br />Abre esto cuando estés quieras.</p>
+      <p className="cover__intro">Hay recuerdos que merecen un lugar especial para que perduren.<br />Abre tu regalo.</p>
       <button className="envelope" onClick={() => setOpened(true)}><span className="envelope__heart">♥</span><span className="envelope__label">Abrir mi regalo</span></button>
       <p className="hint">Da click en el sobre</p>
     </section> : <main>
